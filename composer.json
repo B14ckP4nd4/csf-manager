@@ -4,7 +4,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Blackpanda\\CsfManager\\": "src/"
+            "Blackpanda\\CSF\\": "src/"
         }
     },
     "authors": [
