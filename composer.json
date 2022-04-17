@@ -1,0 +1,17 @@
+{
+    "name": "blackpanda/csf-manager",
+    "description": "Manage CSF firewall rules",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Blackpanda\\CsfManager\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "BlackPanda",
+            "email": "46260610+B14ckP4nd4@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
