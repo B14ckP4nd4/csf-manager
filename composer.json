@@ -1,12 +1,21 @@
 {
-    "name": "blackpanda/csf-manager",
+    "name": "b14ckp4nd4/csf-manager",
     "description": "Manage CSF firewall rules",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Blackpanda\\CSF\\": "src/"
+            "BlackPanda\\CSF\\": "src/"
         }
     },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BlackPanda\\CSF\\CSFServiceProvider"
+            ]
+        }
+    },
+
     "authors": [
         {
             "name": "BlackPanda",

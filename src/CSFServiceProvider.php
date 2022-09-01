@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Blackpanda\CSF;
+namespace BlackPanda\CSF;
 
 
 use Illuminate\Support\ServiceProvider;
