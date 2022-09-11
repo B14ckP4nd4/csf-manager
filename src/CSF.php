@@ -45,8 +45,8 @@ class CSF
     }
 
     protected function silentExecute($command){
-        $logPath = storage_path('logs/laravel.log');
-        exec($command . " 2> {$logPath}",$output);
+        $nullPath = __DIR__.'/null';
+        exec($command . " 2> {$nullPath}",$output);
         return $output;
     }
 
