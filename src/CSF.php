@@ -9,7 +9,7 @@ class CSF
     CONST CSF_PATH = "/usr/sbin/csf";
     public function __construct()
     {
-        exec("sudo " . self::CSF_PATH . " -l", $output);
+        $output = $this->silentExecute("sudo " . self::CSF_PATH . " -l");
         if(strpos(implode(PHP_EOL , $output),"iptables filter table") === false)
             throw new \Exception("CSF not found or your user is not privileged !");
     }
@@ -23,28 +23,31 @@ class CSF
         if(is_array($ip))
         {
             foreach ($ip as $item){
-                exec("sudo " . self::CSF_PATH . " -a {$item}", $output);
+                $output = $this->silentExecute("sudo " . self::CSF_PATH . " -a {$item}");
                 $output = implode(PHP_EOL , $output);
                 if( strpos($output , "is in already in the allow file") === false  && strpos($output , "to csf.allow and iptables ACCEPT") == false && strpos($output , "is one of this servers addresses") == false )
                     throw new \Exception("something happened wrong with {$item} \n Logs : {$output}");
             }
 
-            exec("sudo " . self::CSF_PATH . " -r", $output);
+            $output = $this->silentExecute("sudo " . self::CSF_PATH . " -r");
 
             return true;
         }
 
-        exec("sudo " . self::CSF_PATH . " -a {$ip}", $output);
+        $output = $this->silentExecute("sudo " . self::CSF_PATH . " -a {$ip}");
         $output = implode(PHP_EOL , $output);
         if( strpos($output , "is in already in the allow file") === false  && strpos($output , "to csf.allow and iptables ACCEPT") == false && strpos($output , "is one of this servers addresses") == false )
             throw new \Exception("something happened wrong with {$ip} \n Logs : {$output}");
 
-        exec("sudo " . self::CSF_PATH . " -r", $output);
+        $output = $this->silentExecute("sudo " . self::CSF_PATH . " -r");
 
         return true;
+    }
 
-
-
+    protected function silentExecute($command){
+        $logPath = storage_path('logs/laravel.log');
+        exec($command . " 2> {$logPath}",$output);
+        return $output;
     }
 
 }
