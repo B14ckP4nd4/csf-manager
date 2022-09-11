@@ -45,8 +45,7 @@ class CSF
     }
 
     protected function silentExecute($command){
-        $nullPath = __DIR__.'/null';
-        exec($command . " 2> {$nullPath}",$output);
+        exec($command ,$output);
         return $output;
     }
 
